@@ -2,29 +2,28 @@ import React, { useState,useEffect } from 'react'
 
 function App() {
   const [data,setData] = useState([{}])
-
+  let arr = []
   useEffect(()=> {
     fetch("/members").then(
       res => res.json()
     ).then(
       data=>{
         setData(data)
-        console.log(data)
       }
     )
-
   },[])
-
-  return(
-    <div>
-      {(typeof data.members == 'undefined') ? (
-        <p>Loading...</p>
-      ):(
-        data.members.map((member,i) => (
-          <p key={i}>{member}</p>
-        ))
-      )}
-    </div>
+  for (var i = 0; i < data.length; i++)
+    arr.push(data[i])
+    console.log(data[i])
+  
+  return((arr.map((user,number) =>
+  <div key={number}>
+    {user[0]}&ensp;
+    {user[1]}&ensp;
+    {user[2]}&ensp;
+    {user[3]}&ensp;
+    {user[4]}&ensp;
+  </div>))
   )
 }
 export default App
